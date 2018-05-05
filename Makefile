@@ -5,6 +5,7 @@
 # Parameters
 export ARCH ?= im
 export ABI  ?= ilp32
+export BUS  ?= AXI
 # Testbench memory delay patterns (FFFFFFFF - no delay, 00000000 - random delay, 00000001 - max delay)
 imem_pattern ?= FFFFFFFF
 dmem_pattern ?= FFFFFFFF
