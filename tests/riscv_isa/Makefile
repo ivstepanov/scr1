@@ -55,33 +55,33 @@ NC=\033[0m
 
 check_riscv_tests : $(riscv_tests_dir)
 	@if [ ! -d $(riscv_tests_dir) ]; then \
-		echo -e "$(RED)==========================================================================" &&\
-		echo "   Error! Environment variable RISCV_TESTS='$(riscv_tests_dir)' " &&\
-		echo "      directory not exist!" && \
-		echo "==========================================================================$(NC)" ; \
+		@printf "$(RED)==========================================================================\n" ; \
+		@printf "   Error! Environment variable RISCV_TESTS='$(riscv_tests_dir)' \n" ; \
+		@printf "      directory not exist!\n" ; \
+		@printf "==========================================================================$(NC)\n" ; \
 	fi
 ifneq (,$(is_repo_changed))
-	@echo -e "$(RED)=========================================================================="
-	@echo "   Error! Repo '$(riscv_tests_dir)' "
-	@echo "     must be unchanged!"
-	@echo -e "==========================================================================$(NC)"
+	@printf "$(RED)==========================================================================\n"
+	@printf "   Error! Repo '$(riscv_tests_dir)' \n"
+	@printf "     must be unchanged! \n"
+	@printf "==========================================================================$(NC)\n"
 	exit 1
 endif
 ifneq ($(is_commit_good),true)
-	@echo -e "$(RED)=========================================================================="
-	@echo "   Error! riscv-tests must point to commit $(riscv_tests_commit)"
-	@echo -e "==========================================================================$(NC)"
+	@printf "$(RED)==========================================================================\n"
+	@printf "   Error! riscv-tests must point to commit $(riscv_tests_commit)\n"
+	@printf "==========================================================================$(NC)\n"
 	exit 1
 endif
 
 $(riscv_tests_dir) :.
 ifndef RISCV_TESTS
-	@echo -e "$(RED)=========================================================================="
-	@echo "    Error! Environment variable RISCV_TESTS not set!"
-	@echo "    You must set the environment variable RISCV_TESTS"
-	@echo "    The variable should point to the local copy of the"
-	@echo "      repository https://github.com/riscv/riscv-tests"
-	@echo "      with the commit $(riscv_tests_commit)"
-	@echo -e "==========================================================================$(NC)"
+	@printf "$(RED)==========================================================================\n"
+	@printf "    Error! Environment variable RISCV_TESTS not set!\n"
+	@printf "    You must set the environment variable RISCV_TESTS\n"
+	@printf "    The variable should point to the local copy of the\n"
+	@printf "      repository https://github.com/riscv/riscv-tests\n"
+	@printf "      with the commit $(riscv_tests_commit)\n"
+	@printf "==========================================================================$(NC)\n"
 	exit 1
 endif
